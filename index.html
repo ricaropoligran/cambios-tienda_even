@@ -156,10 +156,9 @@
     .prod-img{
       width:100%;aspect-ratio:1;
       display:flex;align-items:center;justify-content:center;
-      font-size:3.8rem;position:relative;overflow:hidden;
+      overflow:hidden;
     }
-    /* IMAGEN DEL PRODUCTO: dentro de prod-img puedes poner <img src="URL" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"> */
-    .prod-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .prod-img img{width:100%;height:100%;object-fit:cover;display:block;}
     .prod-info{padding:10px 12px 14px;text-align:center;}
     .prod-name{
       font-size:10px;font-weight:600;letter-spacing:1.5px;
@@ -515,20 +514,20 @@
   const WHATSAPP = '573116824142';
   const fmt = n => '$' + n.toLocaleString('es-CO');
 
- const prods = [
+  const prods = [
     {id:1,  name:'Labial mate',           brand:'MAC',              price:65000,  cat:'maquillaje',       img:'https://i.imgur.com/sFNOJrZ.jpeg', bg:'linear-gradient(145deg,#f5ddd0,#e8c4a0)', featured:true},
-    {id:2,  name:'Gloss voluminizador',   brand:'Fenty Beauty',     price:72000,  cat:'maquillaje',       img:'https://i.imgur.com/awQwkXf.png', bg:'linear-gradient(145deg,#f0d5c8,#deb8a0)', featured:false},
+    {id:2,  name:'Gloss voluminizador',   brand:'Fenty Beauty',     price:72000,  cat:'maquillaje',       img:'https://i.imgur.com/awQwkXf.png',  bg:'linear-gradient(145deg,#f0d5c8,#deb8a0)', featured:false},
     {id:3,  name:'Delineador líquido',    brand:'NYX',              price:42000,  cat:'maquillaje',       img:'https://i.imgur.com/C3slLAv.jpeg', bg:'linear-gradient(145deg,#e8ddd8,#d4c0b8)', featured:false},
     {id:4,  name:'Paleta de sombras',     brand:'Urban Decay',      price:135000, cat:'maquillaje',       img:'https://i.imgur.com/8twoaor.jpeg', bg:'linear-gradient(145deg,#f0e0d0,#ddc8b0)', featured:true},
     {id:5,  name:'Base fluida',           brand:"L'Oréal",          price:89000,  cat:'maquillaje',       img:'https://i.imgur.com/kWcPyC2.jpeg', bg:'linear-gradient(145deg,#f5e8d8,#e8d0b8)', featured:false},
-    {id:6,  name:'Sérum vitamina C',      brand:'The Ordinary',     price:78000,  cat:'cuidado-piel',     img:'https://i.imgur.com/HKYwSQP.png', bg:'linear-gradient(145deg,#f5f0d8,#e8e0a8)', featured:true},
+    {id:6,  name:'Sérum vitamina C',      brand:'The Ordinary',     price:78000,  cat:'cuidado-piel',     img:'https://i.imgur.com/HKYwSQP.png',  bg:'linear-gradient(145deg,#f5f0d8,#e8e0a8)', featured:true},
     {id:7,  name:'Hidratante SPF50',      brand:'Neutrogena',       price:55000,  cat:'cuidado-piel',     img:'https://i.imgur.com/3FmTS3b.jpeg', bg:'linear-gradient(145deg,#d8f0f0,#a8d8d8)', featured:false},
-    {id:8,  name:'Tónico facial',         brand:'Cerave',           price:68000,  cat:'cuidado-piel',     img:'https://i.imgur.com/xgjfO1m.png', bg:'linear-gradient(145deg,#d8e8f5,#b0c8e8)', featured:false},
+    {id:8,  name:'Tónico facial',         brand:'Cerave',           price:68000,  cat:'cuidado-piel',     img:'https://i.imgur.com/xgjfO1m.png',  bg:'linear-gradient(145deg,#d8e8f5,#b0c8e8)', featured:false},
     {id:9,  name:'Crema corporal',        brand:'Aveeno',           price:48000,  cat:'cuidado-corporal', img:'https://i.imgur.com/mUxU6FL.jpeg', bg:'linear-gradient(145deg,#f5eed8,#e8d8a8)', featured:false},
     {id:10, name:'Exfoliante corporal',   brand:'St. Ives',         price:38000,  cat:'cuidado-corporal', img:'https://i.imgur.com/a0uT5ee.jpeg', bg:'linear-gradient(145deg,#d8f0d8,#a8d8a8)', featured:false},
     {id:11, name:'Aceite de almendras',   brand:'Weleda',           price:62000,  cat:'cuidado-corporal', img:'https://i.imgur.com/K9KHcRJ.jpeg', bg:'linear-gradient(145deg,#f5e8c8,#e0c898)', featured:false},
     {id:12, name:'212 Mujer',             brand:'Carolina Herrera', price:220000, cat:'perfumes',         img:'https://i.imgur.com/LxLwbZa.jpeg', bg:'linear-gradient(145deg,#f5d8e8,#e0a8c8)', featured:true},
-    {id:13, name:'Acqua di Giò',          brand:'Armani',           price:195000, cat:'perfumes',         img:'https://i.imgur.com/jAVKA4G.png', bg:'linear-gradient(145deg,#d8e8f5,#a8c8e8)', featured:false},
+    {id:13, name:'Acqua di Giò',          brand:'Armani',           price:195000, cat:'perfumes',         img:'https://i.imgur.com/jAVKA4G.png',  bg:'linear-gradient(145deg,#d8e8f5,#a8c8e8)', featured:false},
     {id:14, name:'Brochas set x5',        brand:'Real Techniques',  price:85000,  cat:'accesorios',       img:'https://i.imgur.com/D9HCbt2.jpeg', bg:'linear-gradient(145deg,#f0d8f0,#d8a8d8)', featured:false},
     {id:15, name:'Esponja maquillaje',    brand:'Beautyblender',    price:55000,  cat:'accesorios',       img:'https://i.imgur.com/Gv9ydds.jpeg', bg:'linear-gradient(145deg,#e8d8f5,#c8a8e8)', featured:false},
   ];
@@ -541,7 +540,9 @@
     const list = curCat === 'todos' ? prods : prods.filter(p => p.cat === curCat);
     grid.innerHTML = list.map(p => `
       <div class="prod-card">
-        <div class="prod-img" style="background:${p.bg}">${p.icon}</div>
+        <div class="prod-img" style="background:${p.bg}">
+          ${p.img ? `<img src="${p.img}" alt="${p.name}">` : ''}
+        </div>
         <div class="prod-info">
           <div class="prod-name">${p.name}</div>
           <div class="prod-brand">${p.brand}</div>
@@ -556,7 +557,9 @@
     const feat = prods.filter(p => p.featured).slice(0,4);
     g.innerHTML = feat.map(p => `
       <div class="prod-card">
-        <div class="prod-img" style="background:${p.bg};aspect-ratio:1;font-size:2.5rem;">${p.icon}</div>
+        <div class="prod-img" style="background:${p.bg};aspect-ratio:1;">
+          ${p.img ? `<img src="${p.img}" alt="${p.name}">` : ''}
+        </div>
         <div class="prod-info">
           <div class="prod-name">${p.name}</div>
           <span class="prod-price">${fmt(p.price)}</span>
@@ -577,7 +580,7 @@
     if (!cart[id]) cart[id] = {...p, qty:0};
     cart[id].qty++;
     updateCart();
-    showToast(p.icon + ' ' + p.name + ' agregado');
+    showToast('✓ ' + p.name + ' agregado');
   }
   function rm(id) { delete cart[id]; updateCart(); }
   function chQty(id, d) {
@@ -599,7 +602,9 @@
     } else {
       ci.innerHTML = items.map(i => `
         <div class="citem">
-          <div class="cico">${i.icon}</div>
+          <div style="width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;background:${i.bg};">
+            ${i.img ? `<img src="${i.img}" alt="${i.name}" style="width:100%;height:100%;object-fit:cover;display:block;">` : ''}
+          </div>
           <div class="cinf">
             <div class="cname">${i.name}</div>
             <div class="cprice">${fmt(i.price)}</div>
